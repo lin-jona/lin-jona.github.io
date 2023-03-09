@@ -24,13 +24,3 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./public
-      - name: Publish to pages 
-        uses: cloudflare/pages-action@1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: lin_p # e.g. 'my-project'
-          directory: ./public # e.g. 'dist'
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-      - run: sleep 30
-      - uses: actions/checkout@v3
