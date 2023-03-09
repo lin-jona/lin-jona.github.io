@@ -1,0 +1,36 @@
+name: Deploy Site
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'scripts/**'
+jobs:
+  build-deploy:
+    concurrency: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Zola
+        run: |
+          curl -sL https://github.com/getzola/zola/releases/download/v${ZOLA_VERSION}/zola-v${ZOLA_VERSION}-x86_64-unknown-linux-gnu.tar.gz | tar xz -C /usr/local/bin
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Build with Zola
+        run: zola build
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./public
+      - name: Publish to pages 
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: lin_p # e.g. 'my-project'
+          directory: ./public # e.g. 'dist'
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - run: sleep 30
+      - uses: actions/checkout@v3
