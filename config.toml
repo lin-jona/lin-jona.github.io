@@ -1,0 +1,42 @@
+# The URL the site will be built for
+base_url = "https://pjigsaw.eu.org"
+build_search_index = false
+compile_sass = false
+default_language = "zh"
+description = "主要关注技术，读书，摘抄，杂谈，文章评论，工具分享，工作流，灵感，英文学习，注意力管理，深度工作等方向"
+generate_feed = true
+generate_rss = true
+taxonomies = [
+  { name = "tags", feed = true, paginate_by = 50 },
+  { name = "categories", feed = true, paginate_by = 50 },
+]
+title = "pjigsaw的博客"
+
+[markdown]
+# When set to "true", all code blocks are highlighted.
+highlight_code = true
+highlight_theme = "material-light"
+# Whether external links are to be opened in a new tab
+# If this is true, a `rel="noopener"` will always automatically be added for security reasons
+external_links_target_blank = true
+
+# Whether to set rel="nofollow" for all external links
+external_links_no_follow = true
+
+# Whether to set rel="noreferrer" for all external links
+external_links_no_referrer = true
+smart_punctuation = true
+
+[extra]
+author = "pjigsaw"
+email = "owen@owenyoung.com"
+prefix_url = "https://pjigsaw.eu.org"
+indieweb_url = "https://pjigsaw.eu.org/"
+theme_color = "#fffcf9"
+
+### indieweb note
+bio = "Web developer, I like reading and explore the internet, so I have collected queit a few notes in my blog."
+### THIRD PARTY
+# google_analytics = "UA-012345-67"
+# disqus = "disqus-user"
+
